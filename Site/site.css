@@ -1,7 +1,11 @@
+#fundo{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom,lightblue,white);
+}
 body {
 font-family: trebuchet ms;
 color: white;
-background: linear-gradient(to right,lightblue,white);
  text-align: center;
 }
 h2 {
