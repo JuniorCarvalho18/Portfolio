@@ -1,9 +1,7 @@
-#fundo{
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to bottom,lightblue,white);
-}
 body {
+  padding-bottom: 127px;
+  height: 100%;
+  background: linear-gradient(to bottom,rgb(139, 226, 255),rgb(212, 255, 244));
 font-family: trebuchet ms;
 color: white;
  text-align: center;
@@ -11,11 +9,13 @@ color: white;
 h2 {
  font-size: 24px;
 }
+h3{
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.238);
+}
 a {
-text-decoration: none;
 display: block;
- background-color: lightgray;
-color: blue;
+ background-color: rgba(255, 255, 255, 0.612);
+color: rgb(0, 0, 131);
 font-size: 20px;
 padding: 10px;
 margin: 10px;
@@ -40,4 +40,12 @@ img {
   border-radius: 75px;
   margin-top: 20px;
   animation: jump 1s infinite;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 0, 131);
+  color: white;
+  text-align: center;
 }
