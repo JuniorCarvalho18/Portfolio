@@ -1,6 +1,7 @@
 const $html = document.querySelector('html');
 const $i = document.querySelector('i');
 
+function darkMode() {
 $html.addEventListener('click', () => {
   $i.classList.toggle('fa-moon');
   $i.classList.toggle('fa-sun');
@@ -8,3 +9,4 @@ $html.addEventListener('click', () => {
 $i.addEventListener('change', function() {
     $html.classList.toggle('dark-mode');
   });
+}
