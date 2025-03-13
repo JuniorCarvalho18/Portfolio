@@ -1,10 +1,46 @@
+:root {
+  --primary-color: rgb(0, 0, 131);
+  --secondary-color: rgb(139, 226, 255);
+  --tertiary-color: rgb(212, 255, 244);
+  --quaternary-color: rgba(255, 255, 255, 0.612);
+  --quinary-color: rgba(53, 53, 53, 0.612);
+}
+
+.dark-mode:root {
+  --primary-color: rgb(139, 226, 255);
+  --secondary-color: rgb(0, 0, 131);
+  --tertiary-color: rgb(68, 85, 84);
+  --quaternary-color: rgba(53, 53, 53, 0.612);
+  --quinary-color: rgba(255, 255, 255, 0.612);
+  
+}
+header {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+i{
+  margin: 10px;
+}
+#dark-mode-bttn{
+  position: absolute;
+  right: 0;
+  font-size: 30px;
+  color: var(--quinary-color);
+}
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-bottom: 127px;
   height: 100%;
-  background: linear-gradient(to bottom,rgb(139, 226, 255),rgb(212, 255, 244));
+  background: linear-gradient(to bottom,var(--secondary-color),var(--tertiary-color));
 font-family: trebuchet ms;
 color: white;
  text-align: center;
+ margin: 0;
 }
 h2 {
  font-size: 24px;
@@ -13,9 +49,14 @@ h3{
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.238);
 }
 a {
-display: block;
- background-color: rgba(255, 255, 255, 0.612);
-color: rgb(0, 0, 131);
+  width: 150px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+text-decoration: none;
+ background-color: var(--quaternary-color);
+color: var(--primary-color);
 font-size: 20px;
 padding: 10px;
 margin: 10px;
