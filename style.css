@@ -16,10 +16,6 @@
 }
 header {
   width: 100vh;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: right;
   padding: 20px;
 }
 i{
@@ -43,8 +39,6 @@ body {
   text-align: center;
   margin: 0;
 }
-h1 {
-}
 h2 {
  font-size: 24px;
 }
@@ -64,6 +58,10 @@ margin: 10px;
 border: solid 1px;
 border-radius: 20px;
 }
+a:hover {
+  background-color: var(--primary-color);
+  color: var(--quaternary-color);
+}
 p {
  border: 50px;
 
@@ -82,6 +80,10 @@ img {
   border-radius: 75px;
   margin-top: 20px;
   animation: jump 1s infinite;
+}
+img:hover {
+  animation-play-state: paused;
+  box-shadow: 0 0 10px rgba(186, 241, 255, 0.903);
 }
 footer {
   position: fixed;
