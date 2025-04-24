@@ -69,12 +69,12 @@ p {
  border: 50px;
 
 }
-@keyframes jump {
+@keyframes oscilation {
   0%, 100% {
-    transform: translateY(0);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
   }
   50% {
-    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
   }
 }
 
@@ -82,7 +82,7 @@ img {
   width: 150px;
   border-radius: 75px;
   margin-top: 20px;
-  animation: jump 1s infinite;
+  animation: oscilation 2s infinite;
 }
 img:hover {
   animation-play-state: paused;
