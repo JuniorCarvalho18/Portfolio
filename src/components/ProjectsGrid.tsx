@@ -31,7 +31,7 @@ const projects: Project[] = [
   { 
     id: 2, 
     title: "Growth Investimentos", 
-    description: "Protótipo de plataforma de investimentos verdes.",
+    description: "Protótipo de plataforma Mobile de investimentos verdes.",
     image: "/", // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
     link: "https://github.com/JuniorCarvalho18/GrowthInvestimentos" 
   },
