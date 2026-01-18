@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
       usePolling: true,
     },
   },
-  plugins: [react(), mode === "development"].filter(Boolean),
+  plugins: [react(), ...(mode === "development" ? [] : [])],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
