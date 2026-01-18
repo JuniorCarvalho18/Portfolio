@@ -1,7 +1,7 @@
 const $html = document.querySelector('html');
 const $i = document.querySelector('i');
 
-function darkMode() {
+function lightMode() {
   $i.classList.toggle('fa-sun');
-  $html.classList.toggle('dark-mode');
+  $html.classList.toggle('light-mode');
 }

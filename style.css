@@ -3,10 +3,10 @@
   --secondary-color: rgb(139, 226, 255);
   --tertiary-color: rgb(212, 255, 244);
   --quaternary-color: rgba(255, 255, 255, 0.612);
-  --quinary-color: rgba(53, 53, 53, 0.612);
+  --quinary-color: rgba(150, 150, 150, 0.2);
 }
 
-.dark-mode:root {
+.light-mode:root {
   --primary-color: rgb(139, 226, 255);
   --secondary-color: rgb(0, 0, 131);
   --tertiary-color: rgb(68, 85, 84);
@@ -21,7 +21,7 @@ header {
 i{
   margin: 10px;
 }
-#dark-mode-bttn {
+#light-mode-bttn {
   position: absolute;
   right: 0;
   font-size: 30px;
