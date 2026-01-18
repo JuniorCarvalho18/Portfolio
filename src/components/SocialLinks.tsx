@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const links = [
   {
@@ -10,7 +11,7 @@ const links = [
   },
   {
     name: "GitHub",
-    url: "https://github.com/JuniorCarvalho18?tab=repositories",
+    url: "https://github.com/JuniorCarvalho18",
     icon: Github,
     color: "hover:bg-muted hover:border-foreground/30",
   },
@@ -23,6 +24,19 @@ const links = [
 ];
 
 const SocialLinks = () => {
+  const { toast } = useToast();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof links[0]) => {
+    if (link.name === "Email") {
+      e.preventDefault();
+      navigator.clipboard.writeText(link.url);
+      toast({
+        title: "Email copiado!",
+        description: "O endereço foi salvo na área de transferência.",
+      });
+    }
+  };
+
   return (
     <motion.div 
       className="flex flex-col gap-3 w-full max-w-xs"
@@ -37,10 +51,11 @@ const SocialLinks = () => {
       {links.map((link, index) => (
         <motion.a
           key={link.name}
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`flex items-center gap-4 px-5 py-3.5 rounded-xl glass-card border border-border/50 transition-all duration-300 ${link.color}`}
+          href={link.name === "Email" ? "#" : link.url}
+          target={link.name === "Email" ? undefined : "_blank"}
+          rel={link.name === "Email" ? undefined : "noopener noreferrer"}
+          onClick={(e) => handleLinkClick(e, link)}
+          className={`flex items-center gap-4 px-5 py-3.5 rounded-xl glass-card border border-border/50 transition-all duration-300 ${link.color} cursor-pointer`}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
