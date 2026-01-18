@@ -2,11 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   base: "/Portfolio/",
-
   server: {
     host: "::",
     port: 8080,
@@ -17,7 +14,7 @@ export default defineConfig(({ mode }) => ({
       usePolling: true,
     },
   },
-  plugins: [react(), ...(mode === "development" ? [] : [])],
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
