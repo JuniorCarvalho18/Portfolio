@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Folder, ExternalLink } from "lucide-react";
 
+import project1Img from "../assets/calc.png";
+
 // ADICIONEI: Interface para tipar melhor os projetos (opcional, mas boa prática)
 interface Project {
   id: number;
@@ -15,21 +17,21 @@ const projects: Project[] = [
     id: 1, 
     title: "Sigma Automóveis", 
     description: "Webpage de concessionária de veículos com catálogo.",
-    image: "/.jpg", // Exemplo: Coloque uma imagem com esse nome na pasta 'public'
+    image: "/", // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
     link: "https://github.com/JuniorCarvalho18/Projeto-SigmaAutomoveis" 
   },
   { 
     id: 2, 
     title: "Growth Investimentos", 
     description: "Protótipo de plataforma de investimentos verdes.",
-    image: "/.jpg", // Exemplo: Coloque uma imagem com esse nome na pasta 'public'
+    image: "/", // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
     link: "https://github.com/JuniorCarvalho18/GrowthInvestimentos" 
   },
   { 
     id: 3, 
     title: "Calculadora Web", 
     description: "Clássico projeto de calculadora funcional na web.",
-    image: "/public/calc.png", // Exemplo: Coloque uma imagem com esse nome na pasta 'public'
+    image: project1Img, // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
     link: "https://juniorcarvalho18.github.io/Projeto-Calculadora/" 
   }
 ];
