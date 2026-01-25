@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
-type CarouselPlugin = UseCarouselParameters[1]; 
+type CarouselPlugin = UseCarouselParameters[1];
 
 type CarouselProps = {
   opts?: CarouselOptions;
@@ -65,7 +65,6 @@ const Carousel = React.forwardRef<
       },
       plugins
     );
-
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
 
@@ -155,10 +154,29 @@ const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { carouselRef, orientation } = useCarousel();
+  const { carouselRef, orientation, api } = useCarousel();
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    const emblaNode = api.rootNode();
+    if (!emblaNode) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      
+      if (e.deltaY > 0) api.scrollNext();
+      else api.scrollPrev();
+      
+      e.preventDefault();
+    };
+
+    emblaNode.addEventListener("wheel", onWheel, { passive: false });
+    return () => emblaNode.removeEventListener("wheel", onWheel);
+  }, [api]);
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="overflow-hidden touch-pan-y">
       <div
         ref={ref}
         className={cn(
