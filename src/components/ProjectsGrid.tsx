@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Folder, ExternalLink, Github, X } from "lucide-react";
-import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures"; 
+import WheelGestures from "embla-carousel-wheel-gestures";
 import {
   Dialog,
   DialogContent,
@@ -118,7 +118,7 @@ const ProjectsGrid = () => {
                         align: "center",
                         loop: project.images.length > 1,
                       }}
-                      plugins={[WheelGesturesPlugin()]}
+                      plugins={[WheelGestures()]}
                       className="w-full"
                     >
                       <CarouselContent className={project.images.length > 1 ? "-ml-4" : "ml-0"}>
