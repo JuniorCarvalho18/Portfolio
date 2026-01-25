@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Folder, ExternalLink, X } from "lucide-react";
+import { Folder, ExternalLink, Github, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -8,16 +8,26 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import project1Img from "../assets/calc.png";
+import project2Img from "../assets/sigma1.png";
+import project3Img from "../assets/sigma2.png";
+import project4Img from "../assets/sigma3.png";
 
-// ADICIONEI: Interface para tipar melhor os projetos (opcional, mas boa prática)
 interface Project {
   id: number;
   title: string;
   description: string;
-  image?: string; // Opcional: Se não tiver, mostra o ícone de pasta
-  link: string;   // Obrigatório: Link para o GitHub ou Demo
+  images: string[];
+  githubLink: string;
+  deployLink?: string;
 }
 
 const projects: Project[] = [
@@ -25,29 +35,32 @@ const projects: Project[] = [
     id: 1, 
     title: "Sigma Automóveis", 
     description: "Webpage de concessionária de veículos com catálogo.",
-    image: "/", // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
-    link: "https://github.com/JuniorCarvalho18/Projeto-SigmaAutomoveis" 
+    images: [project4Img, project2Img, project3Img],
+    githubLink: "https://github.com/JuniorCarvalho18/Projeto-SigmaAutomoveis",
+    deployLink: "https://juniorcarvalho18.github.io/Projeto-SigmaAutomoveis/" 
   },
   { 
     id: 2, 
     title: "Growth Investimentos", 
     description: "Protótipo de plataforma Mobile de investimentos verdes.",
-    image: "/", // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
-    link: "https://github.com/JuniorCarvalho18/GrowthInvestimentos" 
+    images: ["/"],
+    githubLink: "https://github.com/JuniorCarvalho18/GrowthInvestimentos",
+    deployLink: "" 
   },
   { 
     id: 3, 
     title: "Calculadora Web", 
     description: "Clássico projeto de calculadora funcional na web.",
-    image: project1Img, // Exemplo: Coloque uma imagem com esse nome na pasta 'assets'
-    link: "https://juniorcarvalho18.github.io/Projeto-Calculadora/" 
+    images: [project1Img],
+    githubLink: "https://github.com/JuniorCarvalho18/Projeto-Calculadora",
+    deployLink: "https://juniorcarvalho18.github.io/Projeto-Calculadora/" 
   }
 ];
 
 const ProjectsGrid = () => {
   return (
     <motion.section 
-      className="w-full max-w-4xl mt-16 px-4"
+      className="w-full max-w-5xl mt-16 px-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.6 }}
@@ -76,36 +89,68 @@ const ProjectsGrid = () => {
             transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
             whileHover={{ y: -5, scale: 1.02 }}
           >
-            {/* Lógica: Se tem imagem, usa o Dialog */}
-            {project.image ? (
+            {project.images && project.images.length > 0 && project.images[0] !== "/" ? (
               <Dialog>
                 <DialogTrigger asChild>
                   <div className="aspect-video bg-gradient-to-br from-secondary to-muted flex items-center justify-center relative overflow-hidden cursor-zoom-in">
                     <img 
-                      src={project.image} 
+                      src={project.images[0]} 
                       alt={project.title} 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                    
+                    {project.images.length > 1 && (
+                      <div className="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded-md">
+                        +{project.images.length - 1} fotos
+                      </div>
+                    )}
                   </div>
                 </DialogTrigger>
                 
-                <DialogContent className="[&>button]:hidden max-w-4xl w-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
-                  
-                  {/* SOLUÇÃO DO ERRO: Título e Descrição ocultos para acessibilidade */}
-                  <DialogTitle className="sr-only">Visualização do projeto {project.title}</DialogTitle>
+                <DialogContent className="[&>button]:hidden max-w-5xl w-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+                  <DialogTitle className="sr-only">Galeria de {project.title}</DialogTitle>
                   <DialogDescription className="sr-only">
-                    Imagem ampliada do projeto {project.title}. Clique no X ou fora da imagem para fechar.
+                    Navegue pelas imagens do projeto.
                   </DialogDescription>
 
-                  <div className="relative w-full h-auto">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-auto max-h-[85vh] object-contain rounded-md shadow-2xl"
-                    />
-                    {/* Nosso X personalizado */}
-                    <DialogClose className="absolute -top-10 right-0 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors">
+                  <div className="relative w-full">
+                    <Carousel 
+                      opts={{
+                        align: "center",
+                        loop: project.images.length > 1,
+                      }}
+                      className="w-full"
+                    >
+                      <CarouselContent className={project.images.length > 1 ? "-ml-4" : "ml-0"}>
+                        {project.images.map((img, imgIdx) => (
+                          <CarouselItem 
+                            key={imgIdx} 
+                            className={`flex justify-center items-center ${
+                              project.images.length > 1 
+                                ? "pl-4 basis-[85%] md:basis-[80%]" 
+                                : "pl-0 basis-full"
+                            }`}
+                          >
+                            <img 
+                              src={img} 
+                              alt={`${project.title} ${imgIdx + 1}`} 
+                              className="w-full h-auto max-h-[75vh] object-contain rounded-md shadow-2xl"
+                            />
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      
+                      {project.images.length > 1 && (
+                        <>
+                          <CarouselPrevious className="bg-black/40 hover:bg-black/60 border-none text-white left-4 z-50 backdrop-blur-sm shadow-md" />
+                          <CarouselNext className="bg-black/40 hover:bg-black/60 border-none text-white right-4 z-50 backdrop-blur-sm shadow-md" />
+                        </>
+                      )}
+                    </Carousel>
+
+                    {/* Botão de fechar com fundo escuro para visibilidade em imagens claras */}
+                    <DialogClose className="absolute -top-12 right-4 p-2 bg-black/40 hover:bg-black/60 rounded-full text-white transition-colors z-50 backdrop-blur-sm shadow-md">
                       <X className="w-6 h-6" />
                     </DialogClose>
                   </div>
@@ -117,25 +162,39 @@ const ProjectsGrid = () => {
               </div>
             )}
             
-            {/* Link para o GitHub */}
-            <a 
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-5 flex-1 flex flex-col justify-between cursor-pointer"
-            >
+            <div className="p-5 flex-1 flex flex-col justify-between">
               <div>
-                <h3 className="font-semibold font-display text-lg mb-1 group-hover:text-primary transition-colors flex items-center justify-between">
+                <h3 className="font-semibold font-display text-lg mb-1 group-hover:text-primary transition-colors">
                   {project.title}
-                  <ExternalLink className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                 </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
                   {project.description}
                 </p>
               </div>
-            </a>
 
-            {/* Glow Effect */}
+              <div className="flex gap-4 mt-auto">
+                <a 
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                >
+                  <Github className="w-4 h-4" /> Rep
+                </a>
+                
+                {project.deployLink && project.deployLink !== "" && (
+                  <a 
+                    href={project.deployLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4" /> Demo
+                  </a>
+                )}
+              </div>
+            </div>
+
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
               <div className="absolute -inset-1 bg-primary/10 blur-xl rounded-2xl" />
             </div>
