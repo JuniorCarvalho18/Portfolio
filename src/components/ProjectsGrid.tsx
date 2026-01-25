@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Folder, ExternalLink, Github, X } from "lucide-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures"; 
 import {
   Dialog,
   DialogContent,
@@ -110,9 +111,6 @@ const ProjectsGrid = () => {
                 
                 <DialogContent className="[&>button]:hidden max-w-5xl w-full p-0 bg-transparent border-none shadow-none flex items-center justify-center">
                   <DialogTitle className="sr-only">Galeria de {project.title}</DialogTitle>
-                  <DialogDescription className="sr-only">
-                    Navegue pelas imagens do projeto.
-                  </DialogDescription>
 
                   <div className="relative w-full">
                     <Carousel 
@@ -120,6 +118,7 @@ const ProjectsGrid = () => {
                         align: "center",
                         loop: project.images.length > 1,
                       }}
+                      plugins={[WheelGesturesPlugin()]}
                       className="w-full"
                     >
                       <CarouselContent className={project.images.length > 1 ? "-ml-4" : "ml-0"}>
@@ -149,7 +148,6 @@ const ProjectsGrid = () => {
                       )}
                     </Carousel>
 
-                    {/* Botão de fechar com fundo escuro para visibilidade em imagens claras */}
                     <DialogClose className="absolute -top-12 right-4 p-2 bg-black/40 hover:bg-black/60 rounded-full text-white transition-colors z-50 backdrop-blur-sm shadow-md">
                       <X className="w-6 h-6" />
                     </DialogClose>
