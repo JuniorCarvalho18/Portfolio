@@ -21,6 +21,17 @@ import project1Img from "../assets/calc.png";
 import project2Img from "../assets/sigma1.png";
 import project3Img from "../assets/sigma2.png";
 import project4Img from "../assets/sigma3.png";
+import growth1Img from "../assets/growth1.png";
+import growth2Img from "../assets/growth2.png";
+import growth3Img from "../assets/growth3.png";
+import growth4Img from "../assets/growth4.png";
+import growth5Img from "../assets/growth5.png";
+import growth6Img from "../assets/growth6.png";
+import growth7Img from "../assets/growth7.png";
+import growth8Img from "../assets/growth8.png";
+import growth9Img from "../assets/growth9.png";
+import growth10Img from "../assets/growth10.png";
+import growth11Img from "../assets/growth11.png";
 
 interface Project {
   id: number;
@@ -44,9 +55,10 @@ const projects: Project[] = [
     id: 2, 
     title: "Growth Investimentos", 
     description: "Protótipo de plataforma Mobile de investimentos verdes.",
-    images: ["/"],
+    images: [growth1Img, growth2Img, growth3Img, growth4Img, growth5Img, growth6Img,
+      growth7Img, growth8Img, growth9Img, growth10Img, growth11Img],
     githubLink: "https://github.com/JuniorCarvalho18/GrowthInvestimentos",
-    deployLink: "" 
+    deployLink: "https://growthinvestimentos-ted5.onrender.com" 
   },
   { 
     id: 3, 
