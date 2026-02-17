@@ -54,7 +54,7 @@ const projects: Project[] = [
   { 
     id: 2, 
     title: "Growth Investimentos", 
-    description: "Protótipo de plataforma Mobile de investimentos verdes.",
+    description: "Plataforma WebMobile de Investimentos Verdes.",
     images: [growth1Img, growth2Img, growth3Img, growth4Img, growth5Img, growth6Img,
       growth7Img, growth8Img, growth9Img, growth10Img, growth11Img],
     githubLink: "https://github.com/JuniorCarvalho18/GrowthInvestimentos",
